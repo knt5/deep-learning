@@ -8,3 +8,9 @@ A personal Deep Learning practice repository based on [this book](https://www.or
 	- Python 3
 	- Numpy
 	- Matplotlib
+
+## Memo
+
+- [cupy](https://github.com/pfnet/cupy)
+	- [slideshare](http://www.slideshare.net/ryokuta/cupy)
+- [PyCUDA](https://github.com/inducer/pycuda)
