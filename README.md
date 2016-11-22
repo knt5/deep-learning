@@ -4,7 +4,7 @@ A personal Deep Learning practice repository based on [this book](https://www.or
 
 ## Installation
 
-- [Anaconda](https://www.continuum.io/downloads) (Python 3, Numpy, Matplotlib)
+- [Anaconda](https://www.continuum.io/downloads) (Python 3, NumPy, Matplotlib)
 
 ## Memo
 
