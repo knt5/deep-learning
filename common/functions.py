@@ -19,3 +19,6 @@ def softmax(a):
 	expA = np.exp(a - c)  # a - c : protected from overflow
 	sumExpA = np.sum(expA)
 	return expA / sumExpA
+
+def meanSquaredError(y, t):
+	return 0.5 * np.sum((y - t) ** 2)
