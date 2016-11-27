@@ -24,4 +24,14 @@ def meanSquaredError(y, t):
 	return 0.5 * np.sum((y - t) ** 2)
 
 def crossEntropyError(y, t):
-	return - np.sum(t * np.log(y + 1e-7))  # 1e-7 : guard from -inf (np.log(0))
+	if y.ndim == 1:
+		t = t.reshape(1, t.size)
+		y = y.reshape(1, y.size)
+	
+	# Convert one-hot-vector to index
+	if t.size == y.size:
+		t = t.argmax(axis=1)
+	
+	#return - np.sum(t * np.log(y + 1e-7))  # 1e-7 : guard from -inf (np.log(0))
+	batchSize = y.shape[0]
+	return - np.sum(np.log(y[np.arange(batchSize), t])) / batchSize
