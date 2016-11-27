@@ -35,3 +35,7 @@ def crossEntropyError(y, t):
 	#return - np.sum(t * np.log(y + 1e-7))  # 1e-7 : guard from -inf (np.log(0))
 	batchSize = y.shape[0]
 	return - np.sum(np.log(y[np.arange(batchSize), t])) / batchSize
+
+def numericalDifferentiation(f, x):
+	h = 1e-4
+	return (f(x + h) - f(x - h)) / (2 * h)
