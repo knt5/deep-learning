@@ -16,9 +16,12 @@ def relu(x):
 
 def softmax(a):
 	c = np.max(a)
-	expA = np.exp(a - c)  # a - c : protected from overflow
+	expA = np.exp(a - c)  # a - c : guard from overflow
 	sumExpA = np.sum(expA)
 	return expA / sumExpA
 
 def meanSquaredError(y, t):
 	return 0.5 * np.sum((y - t) ** 2)
+
+def crossEntropyError(y, t):
+	return - np.sum(t * np.log(y + 1e-7))  # 1e-7 : guard from -inf (np.log(0))
