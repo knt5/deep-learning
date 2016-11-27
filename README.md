@@ -1,6 +1,6 @@
 # deep-learning
 
-A personal Deep Learning practice repository based on [this book](https://www.oreilly.co.jp/books/9784873117584/). (+ [the repository](https://github.com/oreilly-japan/deep-learning-from-scratch))
+A personal Deep Learning practice repository based on [this book](https://www.oreilly.co.jp/books/9784873117584/). ([repository](https://github.com/oreilly-japan/deep-learning-from-scratch))
 
 ## Installation
 
