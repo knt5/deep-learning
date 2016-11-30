@@ -6,7 +6,10 @@ def numericalGradientWithoutBatch(f, x):
 	h = 1e-4
 	gradient = np.zeros_like(x)  # same shape as x with 0 array
 	
-	for index in range(x.size):
+	#for index in range(x.size):
+	iterator = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
+	while not iterator.finished:
+		index = iterator.multi_index
 		t = x[index]
 		
 		# f(x+h)
@@ -22,6 +25,8 @@ def numericalGradientWithoutBatch(f, x):
 		
 		# revert
 		x[index] = t
+		
+		iterator.iternext()
 	
 	return gradient
 
