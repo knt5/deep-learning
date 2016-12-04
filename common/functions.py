@@ -11,6 +11,9 @@ def step(x):
 def sigmoid(x):
 	return 1 / (1 + np.exp(-x))
 
+def sigmoidGradient(x):
+	return (1.0 - sigmoid(x)) * sigmoid(x)
+
 def relu(x):
 	return np.maximum(0, x)
 
