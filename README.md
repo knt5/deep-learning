@@ -6,8 +6,10 @@ A personal Deep Learning practice repository based on [this book](https://www.or
 
 - [Anaconda](https://www.continuum.io/downloads) (Python 3, NumPy, Matplotlib)
 
-## Memo
+## Memo: CuPy
 
-- [cupy](https://github.com/pfnet/cupy)
-	- [slideshare](http://www.slideshare.net/ryokuta/cupy)
-- [PyCUDA](https://github.com/inducer/pycuda)
+```
+# install cupy
+pip install --upgrade pip
+pip install chainer
+```
