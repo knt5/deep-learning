@@ -3,7 +3,7 @@
 import sys
 import numpy as np
 sys.path.append('../../')
-from common.functions import sigmoid, softmax, crossEntropyError
+from common.functions import sigmoid, sigmoidGradient, softmax, crossEntropyError
 from common.gradient import numericalGradient
 
 class TwoLayerNet:
@@ -49,4 +49,30 @@ class TwoLayerNet:
 		gradients['b1'] = numericalGradient(wLossFunc, self.params['b1'])
 		gradients['w2'] = numericalGradient(wLossFunc, self.params['w2'])
 		gradients['b2'] = numericalGradient(wLossFunc, self.params['b2'])
+		return gradients
+	
+	# x:input, t:teacher
+	def getGradient(self, x, t):
+		w1, w2 = self.params['w1'], self.params['w2']
+		b1, b2 = self.params['b1'], self.params['b2']
+		gradients = {}
+		
+		batchSize = x.shape[0]
+		
+		# forward
+		a1 = np.dot(x, w1) + b1
+		z1 = sigmoid(a1)
+		a2 = np.dot(z1, w2) + b2
+		y = softmax(a2)
+		
+		# backward
+		dy = (y - t) / batchSize
+		gradients['w2'] = np.dot(z1.T, dy)
+		gradients['b2'] = np.sum(dy, axis=0)
+		
+		da1 = np.dot(dy, w2.T)
+		dz1 = sigmoidGradient(a1) * da1
+		gradients['w1'] = np.dot(x.T, dz1)
+		gradients['b1'] = np.sum(dz1, axis=0)
+		
 		return gradients

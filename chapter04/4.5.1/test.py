@@ -3,20 +3,21 @@
 import numpy as np
 from TwoLayerNet import TwoLayerNet
 
-net = TwoLayerNet(784, 20, 10)
+net = TwoLayerNet(784, 100, 10)
 print(net.params['w1'].shape)
 print(net.params['b1'].shape)
 print(net.params['w2'].shape)
 print(net.params['b2'].shape)
 
 # predict with dummy input data (x20)
-x = np.random.rand(20, 784)
+x = np.random.rand(100, 784)
 y = net.predict(x)
 #print(y)
 
 # gradient with dummy
-t = np.random.rand(20, 10)  # dummy "answer" labels (x20)
-gradient = net.getNumericalGradient(x, t)
+t = np.random.rand(100, 10)  # dummy "answer" labels (x20)
+#gradient = net.getNumericalGradient(x, t)
+gradient = net.getGradient(x, t)
 print('----------------------- w1')
 print(gradient['w1'])
 print('----------------------- b1')
