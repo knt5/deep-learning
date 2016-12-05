@@ -17,11 +17,19 @@ def sigmoidGradient(x):
 def relu(x):
 	return np.maximum(0, x)
 
-def softmax(a):
-	c = np.max(a)
-	expA = np.exp(a - c)  # a - c : guard from overflow
-	sumExpA = np.sum(expA)
-	return expA / sumExpA
+def softmax(x):
+	if x.ndim == 2:
+		x = x.T
+		x = x - np.max(x, axis=0)
+		y = np.exp(x) / np.sum(np.exp(x), axis=0)
+		return y.T
+	
+	x = x - np.max(x)  # protect from overflow
+	return np.exp(x) / np.sum(np.exp(x))
+
+def numericalDifferentiation(f, x):
+	h = 1e-4
+	return (f(x + h) - f(x - h)) / (2 * h)
 
 def meanSquaredError(y, t):
 	return 0.5 * np.sum((y - t) ** 2)
@@ -38,7 +46,3 @@ def crossEntropyError(y, t):
 	#return - np.sum(t * np.log(y + 1e-7))  # 1e-7 : guard from -inf (np.log(0))
 	batchSize = y.shape[0]
 	return - np.sum(np.log(y[np.arange(batchSize), t])) / batchSize
-
-def numericalDifferentiation(f, x):
-	h = 1e-4
-	return (f(x + h) - f(x - h)) / (2 * h)
