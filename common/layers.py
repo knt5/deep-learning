@@ -17,3 +17,16 @@ class Relu:
 		dy[self.mask] = 0
 		dx = dy
 		return dx
+
+class Sigmoid:
+	def __init__(self):
+		self.y = None
+	
+	def forward(self, x):
+		y = sigmoid(x)
+		self.y = y
+		return y
+	
+	def backward(self, dy):
+		dx = dy * (1.0 - self.y) * self.y
+		return dx
