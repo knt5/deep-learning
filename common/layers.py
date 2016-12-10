@@ -36,12 +36,16 @@ class Affine:
 		self.w = w
 		self.b = b
 		self.x = None
+		self.xShape = None
 		
 		# derivation
 		self.dw = None
 		self.db = None
 	
 	def forward(self, x):
+		self.xShape = x.shape
+		x = x.reshape(x.shape[0], -1)
+		
 		self.x = x
 		y = np.dot(self.x, self.w) + self.b
 		return y
@@ -50,4 +54,5 @@ class Affine:
 		dx = np.dot(dy, self.w.T)
 		self.dw = np.dot(self.x.T, dy)
 		self.db = np.sum(dy, axis=0)
+		dx = dx.reshape(*self.xShape)  # Revert shape
 		return dx
