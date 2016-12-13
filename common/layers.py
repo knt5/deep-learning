@@ -1,7 +1,7 @@
 # coding: utf-8
 
 import numpy as np
-from common.functions import sigmoid, crossEntropyError
+from common.functions import sigmoid, softmax, crossEntropyError
 
 class Relu:
 	def __init__(self):
