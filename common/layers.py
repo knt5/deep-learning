@@ -56,3 +56,26 @@ class Affine:
 		self.db = np.sum(dy, axis=0)
 		dx = dx.reshape(*self.xShape)  # Revert shape
 		return dx
+
+class SoftmaxWithLoss:
+	def __init__(self):
+		self.loss = None
+		self.y = None  # softmax output
+		self.t = None  # teacher data (one-hot-vector)
+	
+	def forward(self, x, t):
+		self.t = t
+		self.y = softmax(x)
+		self.loss = crossEntropyError(self.y, self.t)
+		return self.loss
+	
+	def backward(self, dout=1):
+		batchSize = self.t.shape[0]
+		if self.t.size == self.y.size:  # t is one-hot-vector
+			dx = (self.y - self.t) / batchSize
+		else:                           # or not
+			dx = self.y.copy()
+			dx[np.arange(batchSize), self.t] -= 1
+			dx = dx / batchSize
+		
+		return dx
