@@ -9,16 +9,16 @@ from common.util import smooth_curve
 from common.MultiLayerNet import MultiLayerNet
 from common.optimizer import *
 
-
-# 0:MNISTデータの読み込み==========
+#-----------------------------------------------------------
+# Load MNIST data
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
 
 train_size = x_train.shape[0]
 batch_size = 128
 max_iterations = 2000
 
-
-# 1:実験の設定==========
+#-----------------------------------------------------------
+# Settings
 optimizers = {}
 optimizers['SGD'] = SGD()
 optimizers['Momentum'] = Momentum()
@@ -34,8 +34,8 @@ for key in optimizers.keys():
         output_size=10)
     train_loss[key] = []    
 
-
-# 2:訓練の開始==========
+#-----------------------------------------------------------
+# Training
 for i in range(max_iterations):
     batch_mask = np.random.choice(train_size, batch_size)
     x_batch = x_train[batch_mask]
@@ -54,8 +54,8 @@ for i in range(max_iterations):
             loss = networks[key].loss(x_batch, t_batch)
             print(key + ":" + str(loss))
 
-
-# 3.グラフの描画==========
+#-----------------------------------------------------------
+# Plot
 markers = {"SGD": "o", "Momentum": "x", "AdaGrad": "s", "Adam": "D"}
 x = np.arange(max_iterations)
 for key in optimizers.keys():
