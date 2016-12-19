@@ -17,6 +17,9 @@ def sigmoidGradient(x):
 def relu(x):
 	return np.maximum(0, x)
 
+def tanh(x):
+	return np.tanh(x)
+
 def softmax(x):
 	if x.ndim == 2:
 		x = x.T
