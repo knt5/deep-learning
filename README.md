@@ -6,10 +6,10 @@ A personal Deep Learning practice repository based on [this book](https://www.or
 
 - [Anaconda](https://www.continuum.io/downloads) (Python 3, NumPy, Matplotlib)
 
-## Memo: CuPy
+## Memo
 
-```
-# install cupy
-pip install --upgrade pip
-pip install chainer
-```
+### Batch Normalization
+
+* [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](http://jmlr.org/proceedings/papers/v37/ioffe15.pdf)
+
+![batch normalization](readme/img/batch-normalization.png)
