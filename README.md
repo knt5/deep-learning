@@ -12,4 +12,4 @@ A personal Deep Learning practice repository based on [this book](https://www.or
 
 * [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](http://jmlr.org/proceedings/papers/v37/ioffe15.pdf)
 
-![batch normalization](readme/img/batch-normalization.png)
+<img src="readme/img/batch-normalization.png" width="50%" alt="batch normalization">
