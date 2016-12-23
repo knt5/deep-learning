@@ -204,10 +204,13 @@ class Convolution:
 		out_h = 1 + int((H + 2*self.pad - FH) / self.stride)
 		out_w = 1 + int((W + 2*self.pad - FW) / self.stride)
 		
-		col = im2col(x, FH, FW, self.stride, self.pad)
-		col_W = self.W.reshape(FN, -1).T
+		col = im2col(x, FH, FW, self.stride, self.pad)  # 入力を2次元配列に展開
+		col_W = self.W.reshape(FN, -1).T  # フィルタを2次元配列に展開(reshape(,-1))、転置(T)
 		
+		# 入力データに対してフィルタをFN個個別に畳み込み演算
 		out = np.dot(col, col_W) + self.b
+		
+		# 多次元配列の軸の順序入替 (N,H,W,C) → (N,C,H,W)
 		out = out.reshape(N, out_h, out_w, -1).transpose(0, 3, 1, 2)
 		
 		self.x = x
