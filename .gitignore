@@ -1,5 +1,6 @@
 .DS_Store
 __pycache__/
 *.pyc
-mnist.pkl
 *.gz
+mnist.pkl
+/chapter07/7.5/params.pkl
