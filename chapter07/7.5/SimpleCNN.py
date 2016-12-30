@@ -139,7 +139,7 @@ class SimpleCNN:
 		
 		# 設定
 		grads = {}
-		grads['w1'], grads['b1'] = self.layers['Conv1'].dW, self.layers['Conv1'].db
+		grads['w1'], grads['b1'] = self.layers['Conv1'].dw, self.layers['Conv1'].db
 		grads['w2'], grads['b2'] = self.layers['Affine1'].dw, self.layers['Affine1'].db
 		grads['w3'], grads['b3'] = self.layers['Affine2'].dw, self.layers['Affine2'].db
 		
@@ -159,5 +159,5 @@ class SimpleCNN:
 			self.params[key] = val
 		
 		for i, key in enumerate(['Conv1', 'Affine1', 'Affine2']):
-			self.layers[key].W = self.params['w' + str(i+1)]
+			self.layers[key].w = self.params['w' + str(i+1)]
 			self.layers[key].b = self.params['b' + str(i+1)]
